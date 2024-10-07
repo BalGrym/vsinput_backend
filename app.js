@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 //Data-base Mongodb Mongoose
 const mongoose = require("mongoose");
-mongoose.connect(`${process.env.CLUSTERURL}`);
+mongoose.connect(`${process.env.CLUSTERURL}`, { dbName: "vsinput" });
 
 // Routes
 const comboRoutes = require("./routes/comboRoutes.js");

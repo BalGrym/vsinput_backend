@@ -7,11 +7,11 @@ exports.getAllCombos = (req, res) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-// exports.getComboById = (req, res) => {
-//   const id = parseInt(req.params.id);
-//   const combo = combos.find((combo) => combo.id === id);
-//   res.json(combo);
-// };
+exports.getComboById = (req, res) => {
+  Combo.findOne({ _id: req.params.id })
+    .then((combo) => res.status(200).json(combo))
+    .catch((error) => res.status(400).json(error));
+};
 
 exports.createCombo = (req, res) => {
   const combo = new Combo({
@@ -21,4 +21,10 @@ exports.createCombo = (req, res) => {
     .save()
     .then(() => res.status(201).json({ message: `Combo Créé` }))
     .catch((error) => res.status(400).json({ error }));
+};
+
+exports.deleteCombo = (req, res) => {
+  Combo.deleteOne({ _id: req.params.id })
+    .then(() => res.status(200).json({ message: "Combo supprimé" }))
+    .catch((error) => res.status(500).json({ error }));
 };
