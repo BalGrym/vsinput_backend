@@ -5,6 +5,10 @@ const comboSchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
+  // character: {
+  //   type: String,
+  //   required: true,
+  // },
 });
 
 module.exports = mongoose.model("Combo", comboSchema);
