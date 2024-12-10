@@ -5,7 +5,7 @@ const cors = require("cors");
 const initializeCharacters = require("./config/initializeCharacters");
 
 require("dotenv").config();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 //Middleware
 app.use(bodyParser.json());
