@@ -10,12 +10,7 @@ const port = process.env.PORT || 3000;
 //Middleware
 app.use(bodyParser.json());
 // CORS uniquement pour le localhost
-app.use(
-  cors({
-    origin: `${process.env.LOCALHOST}`,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+app.use(cors());
 
 //Data-base Mongodb Mongoose
 const mongoose = require("mongoose");
@@ -33,8 +28,8 @@ app.use("/api/combos", comboRoutes);
 mongoose.connection.once("open", async () => {
   // Initialisation des personnages
   await initializeCharacters();
+});
 
-  app.listen(port, () => {
-    console.log(`Le serveur écoute sur http://localhost:${port}`);
-  });
+app.listen(port, () => {
+  console.log(`Le serveur écoute sur http://localhost:${port}`);
 });
